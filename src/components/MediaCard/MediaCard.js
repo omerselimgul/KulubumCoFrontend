@@ -5,31 +5,10 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import PropTypes from "prop-types";
 
+// import PropTypes from "prop-types";
 
-// const styles = {
-//     card: {
-//         position: "absolute",
-//         width: "360px",
-//         height: "396px",
-//         left: "156px",
-//         top: "612px",
-//         background: "#FFFFFF",
-//         boxShadow: "0px 10px 20px rgba(0, 0, 0, 0.1)",
-//         borderRadius: "10px"
-//     }
-//     image: {
-//         position: "absolute",
-//         width: "360px",
-//         height: "191px",
-//         left: "156px",
-//         top: "612px",
-//         background: "url(image_3.jpg)",
-//         borderRadius: "6px"
-//     }
-// }
-
+/* Grid Sistemi oturtulacak..*/
 
 const MediaCard = ({name,content,image,alt}) => {
     return (
@@ -37,7 +16,7 @@ const MediaCard = ({name,content,image,alt}) => {
             <CardMedia
                 component="img"
                 height="191"
-                src={image}
+                image={require('../../asset/image_3.jpg')} /*Dynamic lazım */
                 alt={alt}
             />
             <CardContent>
@@ -55,6 +34,10 @@ const MediaCard = ({name,content,image,alt}) => {
         </Card>
     )
 }
+
+// // MediaCard.PropTypes={
+// //     /*Şuanlık boş*/
+// }
 
 MediaCard.defaultProps={
     name:"Çukurova Üniversitesi",
