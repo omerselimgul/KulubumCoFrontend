@@ -10,14 +10,12 @@ import SchoolIcon from '@mui/icons-material/School';
 import axios from 'axios'
 import { useNavigate } from "react-router";
 import { useSnackbar } from 'notistack'
+
 // İnline style Login klasorunun altında css file eklenecek
 const Register = ({ ...props }) => {
     const { enqueueSnackbar, closeSnackbar } = useSnackbar()
     const navigate = useNavigate();
     const [dataSource, setDataSource] = useState({})
-    useEffect(() => {
-       
-    }, [])
 
     const onSaveClick = () => {
         var data = {
@@ -36,8 +34,7 @@ const Register = ({ ...props }) => {
                 enqueueSnackbar(res?.data?.message, { variant: "success" })
                 navigate('/home')
             } else {
-                enqueueSnackbar(res?.data?.message, { variant: "error" })
-                debugger
+                enqueueSnackbar("Kayıtta Hata Oluştu!!", { variant: "error" })
             }
         }).catch(err => {
             enqueueSnackbar(err?.response?.data?.message, { variant: "error" })
@@ -90,8 +87,6 @@ const Register = ({ ...props }) => {
                         value={dataSource?.Email} />
                 </div>
 
-                {/* </div> */}
-                {/* <div style={{ marginBottom: "6rem", display: "flex", justifyContent: "space-around", gap: "6rem" }}> */}
                 <div className="flex items-end justify-center text-center mb-2">
                     <CalendarMonthIcon />
                     <TextField
@@ -118,8 +113,7 @@ const Register = ({ ...props }) => {
                         onChange={(e) => dataSourceHandler("Universite", e.target.value)}
                         value={dataSource?.Universite} />
                 </div>
-                {/* </div> */}
-                {/* <div style={{ marginBottom: "6rem", display: "flex", justifyContent: "space-between", gap: "6rem" }}> */}
+
                 <div className="flex items-end justify-center text-center mb-2">
                     <TextField
 
@@ -137,14 +131,11 @@ const Register = ({ ...props }) => {
                         value={dataSource?.Sheerid} />
                 </div>
 
-                {/* </div> */}
-                {/* <div style={{ display: "flex", justifyContent: "flex-end", height: "3rem", gap: "6rem" }}> */}
                 <Button
                     style={{ borderRadius: "10px", color: "black", borderColor: "black", backgroundColor: "#02A28F" }}
                     className="w-full opacity-100"
                     onClick={onSaveClick} variant="contained">Register</Button>
 
-                {/* </div> */}
             </div >
 
         </div>
