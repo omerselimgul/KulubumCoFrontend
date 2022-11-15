@@ -37,6 +37,7 @@ const Login = () => {
   };
 
   return (
+    // En dışı FormPageWrapper ile kaplayacaksın
     <div
       className=" flex content-center items-center justify-center min-h-screen w-full"
       style={{
@@ -46,6 +47,7 @@ const Login = () => {
         backgroundImage: `url(${Register3})`,
       }}
     >
+      {/*  */}
       <div
         style={{ width: '30%' }}
         className="flex-col items-center justify-center content-center bg-gray-200 font-semibold rounded-2xl  shadow-md shadow-gray-700 px-24 py-12 border-8 border-gray-300 opacity-80"
