@@ -7,6 +7,7 @@ const paths = {
   register: '/register',
   settings: {
     default: '/settings',
+    password: `/settings/password`,
   },
 };
 

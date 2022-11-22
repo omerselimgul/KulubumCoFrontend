@@ -7,6 +7,8 @@ import HomeLayout from '../layouts/HomeLayout/HomeLayout';
 import paths from './paths';
 // import Register from "../Pages/register/register";
 import SettingsLayout from '../layouts/SettingsLayout/SettingsLayout';
+import ProfileSettings from './../pages/Settings/Profile/ProfileSettings';
+import PasswordSecurity from './../pages/Settings/Password/PasswordSecurity';
 
 const Router = () => {
   const routes = useRoutes([
@@ -38,7 +40,11 @@ const Router = () => {
       children: [
         {
           index: true,
-          element: <h1>test</h1>,
+          element: <ProfileSettings />,
+        },
+        {
+          path: paths.settings.password,
+          element: <PasswordSecurity />,
         },
       ],
     },

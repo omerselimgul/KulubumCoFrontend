@@ -3,15 +3,27 @@ import styles from './settings.module.scss';
 // import { Outlet } from 'react-router-dom';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import avatar from '../../asset/avatar.png';
+import avatar from '../../asset/ulas.png';
 import { IconButton } from '@mui/material';
 import { Outlet } from 'react-router-dom';
+import paths from '../../Router/paths';
+import { Link } from 'react-router-dom';
+import classnames from 'classnames';
 
-
-const Arr = ["Edit Profile", "Kulüplerim", "Takip Ettiğim Kulüpler", "Password & Security"]
-
+const sidebarLinks = [
+  {
+    text: 'Edit Profile',
+    path: paths.settings.default,
+  },
+  {
+    text: 'Password & Security',
+    path: paths.settings.password,
+  },
+];
 
 const SettingsLayout = () => {
+  const activeTab = sidebarLinks.find((link) => link.path === window.location.pathname) || sidebarLinks[0];
+
   return (
     <div className={styles.layoutWrapper}>
       {/* Navbar */}
@@ -43,11 +55,9 @@ const SettingsLayout = () => {
       <div className={styles.container}>
         {/* ContainerContent */}
         <div className={styles.containerContent}>
-          <div className={styles.containerContentBackground}>
-            Background
-          </div>
+          <div className={styles.containerContentBackground}>Background</div>
           <div className={styles.containerContentProfile}>
-            <img src={avatar} alt='user'></img>
+            <img src={avatar} alt="user" />
             <div>
               <h2>ulaş öztürk</h2>
               <p>Your account is ready, you can now apply for advice.</p>
@@ -57,18 +67,27 @@ const SettingsLayout = () => {
         {/* containerMain */}
         <div className={styles.containerMain}>
           <div className={styles.containerMainLeft}>
-              {Arr.map((key, item) => {
+            <ul>
+              {sidebarLinks.map((item, key) => {
                 return (
-                  <ul>
-                    <li key={key}>
-                      {Arr[item]}
-                    </li>
-                  </ul>
-                )
+                  <li key={key}>
+                    <Link
+                      to={item.path}
+                      className={
+                        activeTab.path === item.path
+                          ? classnames(styles.containerMainLeftItem, styles.active)
+                          : styles.containerMainLeftItem
+                      }
+                    >
+                      {item.text}
+                    </Link>
+                  </li>
+                );
               })}
+            </ul>
           </div>
           <div className={styles.containerMainRight}>
-            <Outlet/>
+            <Outlet />
           </div>
         </div>
       </div>
