@@ -1,10 +1,15 @@
 import React from 'react';
 import styles from './settings.module.scss';
-import { Outlet } from 'react-router-dom';
+// import { Outlet } from 'react-router-dom';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import avatar from '../../asset/avatar.png';
 import { IconButton } from '@mui/material';
+import { Outlet } from 'react-router-dom';
+
+
+const Arr = ["Edit Profile", "Kulüplerim", "Takip Ettiğim Kulüpler", "Password & Security"]
+
 
 const SettingsLayout = () => {
   return (
@@ -34,10 +39,37 @@ const SettingsLayout = () => {
           </div>
         </div>
       </div>
-      {/* Content */}
+      {/* Container */}
       <div className={styles.container}>
-        <div className={styles.content}>
-          <h1>Hello</h1>
+        {/* ContainerContent */}
+        <div className={styles.containerContent}>
+          <div className={styles.containerContentBackground}>
+            Background
+          </div>
+          <div className={styles.containerContentProfile}>
+            <img src={avatar} alt='user'></img>
+            <div>
+              <h2>ulaş öztürk</h2>
+              <p>Your account is ready, you can now apply for advice.</p>
+            </div>
+          </div>
+        </div>
+        {/* containerMain */}
+        <div className={styles.containerMain}>
+          <div className={styles.containerMainLeft}>
+              {Arr.map((key, item) => {
+                return (
+                  <ul>
+                    <li key={key}>
+                      {Arr[item]}
+                    </li>
+                  </ul>
+                )
+              })}
+          </div>
+          <div className={styles.containerMainRight}>
+            <Outlet/>
+          </div>
         </div>
       </div>
     </div>
