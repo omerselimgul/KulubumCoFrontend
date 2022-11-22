@@ -5,6 +5,9 @@ const paths = {
   },
   login: '/login',
   register: '/register',
+  settings: {
+    default: '/settings',
+  },
 };
 
 export default paths;
