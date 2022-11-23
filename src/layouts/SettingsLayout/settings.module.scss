@@ -1,6 +1,8 @@
 @import '../../styles/variables.scss';
 
 $container-padding: 4rem;
+$nav-height: 70px;
+
 // Layout
 .layout {
   &Wrapper {
@@ -10,9 +12,10 @@ $container-padding: 4rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      height: 90px;
+      height: $nav-height;
 
       &Wrapper {
+        position: fixed;
         background-color: #fff;
         width: 100%;
         border-bottom: 2px solid rgba(232, 234, 238, 0.315);
@@ -49,6 +52,7 @@ $container-padding: 4rem;
 
       &Content {
         background-color: #fff;
+        padding-top: $nav-height;
 
         &Background {
           background-image: url('../../asset/frame.png');
@@ -88,9 +92,12 @@ $container-padding: 4rem;
         padding-top: 1.5rem;
         &Left {
           // background-color: cornflowerblue;
-          width: 30%;
-          padding-inline: $container-padding;
+          width: 250px;
+          padding-right: 1rem;
           border-right: 2px solid rgba(232, 234, 238, 0.4);
+          ul {
+            width: 100%;
+          }
           &Item {
             display: block;
             margin-bottom: 0.5rem;
@@ -100,6 +107,7 @@ $container-padding: 4rem;
             color: #caced8;
             transition: $duration-normal;
             border-radius: 1rem;
+            width: 100%;
             &:hover {
               background-color: #eaf8f5;
               color: #083a50;
@@ -109,7 +117,7 @@ $container-padding: 4rem;
         }
         &Right {
           // background-color: darkkhaki;
-          width: 70%;
+          width: 100%;
           margin-left: 3rem;
         }
       }
