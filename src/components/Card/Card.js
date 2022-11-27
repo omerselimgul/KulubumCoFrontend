@@ -44,6 +44,7 @@ const CardDate = ({ children }) => {
   return <span className={styles.cardDate}>{children}</span>;
 };
 
+//Compused Components
 Card.Title = CardTitle;
 Card.Body = CardBody;
 Card.Date = CardDate;

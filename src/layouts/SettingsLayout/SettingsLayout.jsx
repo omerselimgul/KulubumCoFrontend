@@ -10,15 +10,12 @@ import paths from '../../Router/paths';
 import { Link } from 'react-router-dom';
 import classnames from 'classnames';
 import Menu from '../../components/Menu/Menu';
+import Dropdown from '../../components/Dropdown/Dropdown';
 
 const sidebarLinks = [
   {
     text: 'Edit Profile',
     path: paths.settings.default,
-  },
-  {
-    text: 'Password & Security',
-    path: paths.settings.password,
   },
   {
     text: 'Clubs',
@@ -27,6 +24,14 @@ const sidebarLinks = [
   {
     text: 'Takip Ettiklerim',
     path: paths.settings.follows,
+  },
+  {
+    text: 'Kulüp Ekle ',
+    path: paths.settings.addClub
+  },
+  {
+    text: 'Password & Security',
+    path: paths.settings.password,
   },
 ];
 
@@ -64,9 +69,7 @@ const SettingsLayout = () => {
                 }
               >
                 {/* Menü tasarımı burada olacak */}
-                <div>
-                  <h1 onClick={() => setActive(false)}>Menü icerik</h1>
-                </div>
+                <Dropdown avatar={avatar} />
               </Menu>
             </div>
           </div>
