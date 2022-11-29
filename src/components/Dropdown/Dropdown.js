@@ -36,7 +36,7 @@ const Dropdown = ({ avatar, setActive }) => {
           </Link>
         ))}
 
-        <Button variant="primary" onClick={() => setActive(false)}>
+        <Button variant="contained" className="w-full" onClick={() => setActive(false)}>
           Çıkış Yap
         </Button>
       </div>

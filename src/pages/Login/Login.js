@@ -45,7 +45,7 @@ const Login = ({ ...props }) => {
         }
       })
       .catch((err) => {
-        enqueueSnackbar(err?.response?.data?.message||'Beklenmedik bir hata oluştu!', { variant: 'error' });
+        enqueueSnackbar(err?.response?.data?.message || 'Beklenmedik bir hata oluştu!', { variant: 'error' });
       });
   };
 
@@ -70,40 +70,14 @@ const Login = ({ ...props }) => {
               <Link to={paths.forgotPassword} className="text-sky-500  w-full text-right block mt-2">
                 Şifremi unutttum?
               </Link>
-              <Button
-                style={{
-                  borderRadius: '10px',
-                  color: 'white',
-                  borderColor: 'black',
-                  backgroundColor: '#02A28F',
-                  marginTop: '1.5rem',
-                }}
-                className="w-full"
-                onClick={formik.handleSubmit}
-                variant="contained"
-              >
+              <Button className="w-full mt-5" onClick={formik.handleSubmit} variant="contained">
                 Log In
               </Button>
             </div>
-            <ColoredLine text="Or" />
             <div>
-              <Button
-                style={{
-                  borderRadius: '15px',
-                  color: 'white',
-                  borderColor: 'black',
-                  backgroundColor: '#1A1B22',
-                  marginTop: '1rem',
-                }}
-                className="w-full"
-                variant="contained"
-                startIcon={<GoogleIcon />}
-              >
-                sign-in with Google
-              </Button>
               <FormInfo>
                 Don't have account?
-                <Link to={paths.register} className="ml-2 text-sky-500">
+                <Link to={paths.register} className="ml-2 !text-sky-500">
                   Register
                 </Link>
               </FormInfo>

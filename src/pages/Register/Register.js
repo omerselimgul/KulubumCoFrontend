@@ -14,7 +14,6 @@ import { Formik } from 'formik';
 import { registerSchema } from '../../schemas/auth';
 import api from '../../api';
 import paths from '../../Router/paths';
-import axios from 'axios';
 
 // İnline style Login klasorunun altında css file eklenecek
 
@@ -88,12 +87,7 @@ const Register = ({ ...props }) => {
               onChange={(e) => formik.setFieldValue('Department', e.target.value)}
             />
 
-            <Button
-              style={{ borderRadius: '10px', color: 'black', borderColor: 'black', backgroundColor: '#02A28F' }}
-              className="w-full opacity-100"
-              onClick={formik.handleSubmit}
-              variant="contained"
-            >
+            <Button className="w-full opacity-100" onClick={formik.handleSubmit} variant="contained">
               {formik.isSubmitting ? 'Submitting...' : 'Register'}
             </Button>
             <FormInfo>
