@@ -1,10 +1,11 @@
-import Button from '@mui/material/Button';
 import React from 'react';
 import PersonIcon from '@mui/icons-material/Person';
 import LockIcon from '@mui/icons-material/Lock';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
-import Form, { FormInput, FormPageWrapper } from '../../components/Form/Form';
+import Form, { FormInput, FormPageWrapper, FormInfo } from '../../components/Form/Form';
+import Button from '../../components/Button';
+
 import { Formik } from 'formik';
 import api from '../../api';
 import { loginSchema } from '../../schemas/auth';
@@ -44,8 +45,7 @@ const Login = ({ ...props }) => {
         }
       })
       .catch((err) => {
-        enqueueSnackbar('Giriş Hatalı !!', { variant: 'error' });
-        enqueueSnackbar(err?.response?.data?.message, { variant: 'error' });
+        enqueueSnackbar(err?.response?.data?.message||'Beklenmedik bir hata oluştu!', { variant: 'error' });
       });
   };
 
@@ -67,6 +67,9 @@ const Login = ({ ...props }) => {
               />
             ))}
             <div>
+              <Link to={paths.forgotPassword} className="text-sky-500  w-full text-right block mt-2">
+                Şifremi unutttum?
+              </Link>
               <Button
                 style={{
                   borderRadius: '10px',
@@ -98,6 +101,12 @@ const Login = ({ ...props }) => {
               >
                 sign-in with Google
               </Button>
+              <FormInfo>
+                Don't have account?
+                <Link to={paths.register} className="ml-2 text-sky-500">
+                  Register
+                </Link>
+              </FormInfo>
             </div>
           </Form>
         )}

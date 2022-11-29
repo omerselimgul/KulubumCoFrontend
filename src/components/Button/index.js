@@ -13,7 +13,11 @@ function Button({ children, disabled, loading, style, ...otherProps }) {
     alignItems: 'center',
   };
 
-  const buttonStyle = { ...style, ...(loading ? loadingStyle : style) };
+  const buttonStyle = {
+    ...style,
+    ...(loading ? loadingStyle : style),
+    color: '#fff',
+  };
 
   return (
     <BaseButton {...otherProps} style={buttonStyle} disabled={isDisabled}>

@@ -5,12 +5,13 @@ const paths = {
   },
   login: '/login',
   register: '/register',
+  forgotPassword: '/forgotPassword',
   settings: {
     default: '/settings',
     password: `/settings/password`,
-    clubs:'/settings/clubs',
-    follows:'/settings/follows',
-    addClub:'/settings/addClub'
+    clubs: '/settings/clubs',
+    follows: '/settings/follows',
+    addClub: '/settings/addClub',
   },
 };
 

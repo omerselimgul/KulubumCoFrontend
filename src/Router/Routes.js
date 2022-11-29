@@ -13,8 +13,7 @@ import Clubs from '../pages/Settings/Clubs/Clubs';
 import ClubsPage from '../pages/Homepage/ClubsPage/ClubsPage';
 import Follows from '../pages/Settings/Follows/Follows';
 import AddClub from '../pages/Settings/AddClub/AddClub';
-
-
+import ForgotPassword from './../pages/ForgotPassword/ForgotPassword';
 
 const Router = () => {
   const routes = useRoutes([
@@ -28,8 +27,8 @@ const Router = () => {
         },
         {
           path: paths.home.detailclub,
-          element: <ClubsPage />
-        }
+          element: <ClubsPage />,
+        },
       ],
     },
     {
@@ -45,6 +44,10 @@ const Router = () => {
       element: <Login />,
     },
     {
+      path: paths.forgotPassword,
+      element: <ForgotPassword />,
+    },
+    {
       path: paths.settings.default,
       element: <SettingsLayout />,
       children: [
@@ -57,17 +60,17 @@ const Router = () => {
           element: <PasswordSecurity />,
         },
         {
-          path:paths.settings.clubs,
-          element:<Clubs />,
+          path: paths.settings.clubs,
+          element: <Clubs />,
         },
         {
-          path:paths.settings.follows,
-          element:<Follows />
+          path: paths.settings.follows,
+          element: <Follows />,
         },
         {
-          path:paths.settings.addClub,
-          element: <AddClub />
-        }
+          path: paths.settings.addClub,
+          element: <AddClub />,
+        },
       ],
     },
   ]);

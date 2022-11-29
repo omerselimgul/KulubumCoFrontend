@@ -1,4 +1,3 @@
-import { Button } from '@mui/material';
 import PersonIcon from '@mui/icons-material/Person';
 import LockIcon from '@mui/icons-material/Lock';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
@@ -6,6 +5,7 @@ import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import EmailIcon from '@mui/icons-material/Email';
 import PeopleIcon from '@mui/icons-material/People';
 
+import Button from '../../components/Button';
 import { useNavigate } from 'react-router';
 import { useSnackbar } from 'notistack';
 import Form, { FormInput, FormInfo, FormControl, FormPageWrapper } from '../../components/Form/Form';
@@ -14,6 +14,7 @@ import { Formik } from 'formik';
 import { registerSchema } from '../../schemas/auth';
 import api from '../../api';
 import paths from '../../Router/paths';
+import axios from 'axios';
 
 // İnline style Login klasorunun altında css file eklenecek
 
@@ -32,7 +33,7 @@ const Register = ({ ...props }) => {
   const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
 
-  const onSaveClick = async (values) => {
+  const onSaveClick = (values) => {
     api.auth
       .register(values)
       .then((res) => {
