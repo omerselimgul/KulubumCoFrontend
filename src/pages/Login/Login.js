@@ -9,8 +9,6 @@ import Button from '../../components/Button';
 import { Formik } from 'formik';
 import api from '../../api';
 import { loginSchema } from '../../schemas/auth';
-import ColoredLine from '../../components/ColoredLine/ColoredLine';
-import GoogleIcon from '@mui/icons-material/Google';
 import paths from '../../Router/paths';
 
 const inputs = [

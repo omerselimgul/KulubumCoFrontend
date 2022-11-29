@@ -17,10 +17,10 @@ const navItems = [
   },
   {
     title: 'Universiteler',
-    path: paths.home.default,
+    path: paths.home.universities,
   },
   {
-    title: 'Klüpler',
+    title: 'Kulüpler',
     path: paths.home.detailclub,
   },
 
