@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import Card from '../../components/Card/Card';
 import styles from './home.module.scss';
 import introBackground from '../../asset/image.png';
-import cardImage from '../../asset/image_3.jpg';
+import cardImage from '../../asset/image_3.jpg'
 import Button from './../../components/Button/';
 import Modal from '../../components/Modal/Modal';
 import { useState } from 'react';
