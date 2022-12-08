@@ -8,7 +8,6 @@ import api from './../../../api/index';
 import Spinner from './../../../components/Spinner';
 
 const Universities = () => {
-  //   const url = 'http://localhost:4000/api/university';
 
   const [universities, setUniversities] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -18,10 +17,6 @@ const Universities = () => {
       .list()
       .then((res) => setUniversities(res.data.data))
       .finally(() => setLoading(false));
-    // axios
-    //   .get(url)
-    //   .then((res) => setUniversities(res.data.data))
-    //   .finally(() => setLoading(false));
   }, []);
 
   return (

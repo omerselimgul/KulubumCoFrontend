@@ -3,12 +3,6 @@
 .main {
   width: 100%;
 
-  &Title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
   &Container {
     width: 100%;
     display: flex;
@@ -18,6 +12,14 @@
     // justify-content: center;
     margin-bottom: 1.5rem;
   }
+  
+  &Title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  
   &Not {
     display: flex;
     justify-content: center;
@@ -70,11 +72,6 @@
     }
     &Textarea {
       margin-top: 20px;
-      textarea {
-        width: 100%;
-        height: 550px;
-        padding: 1rem;
-      }
     }
   }
 }
