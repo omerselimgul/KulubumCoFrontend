@@ -12,11 +12,13 @@ const api = {
   },
   clubs: {
     create: (values) => API.post('/club/', values),
+    getClub: (page,limit) =>API.get(`/club/?page=${page}&limit=${limit}`),
     deleteClub: (id) => API.delete(`/club/${id}`),
   },
 
   universities: {
     list: () => API.get('/university'),
+    getUniversity: (id) => API.get(`/university/${id}`)
   },
 };
 
