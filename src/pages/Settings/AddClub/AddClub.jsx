@@ -26,7 +26,7 @@ const AddClub = () => {
   const InitialValues = {
     ClubName: '',
     ClubMail: '',
-    UniversityId: universities[1].value,
+    UniversityId: universities[0].value,
     Description: '',
   };
 

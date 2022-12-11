@@ -30,20 +30,20 @@ const navItems = [
   },
 ];
 
-const menuItems = [
-  {
-    title: 'Profilim',
-    path: paths.settings.default,
-  },
-  {
-    title: 'Takip ettigim klüpler',
-    path: paths.settings.follows,
-  },
-  {
-    title: 'Üye olduğum klüpler',
-    path: paths.settings.clubs,
-  },
-];
+// const menuItems = [
+//   {
+//     title: 'Profilim',
+//     path: paths.settings.default,
+//   },
+//   {
+//     title: 'Takip ettigim klüpler',
+//     path: paths.settings.follows,
+//   },
+//   {
+//     title: 'Üye olduğum klüpler',
+//     path: paths.settings.clubs,
+//   },
+// ];
 
 const Navbar = () => {
   const [active, setActive] = useState(false);

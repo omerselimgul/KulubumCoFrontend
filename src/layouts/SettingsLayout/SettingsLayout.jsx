@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 import classnames from 'classnames';
 import Menu from '../../components/Menu/Menu';
 import Dropdown from '../../components/Dropdown/Dropdown';
+import { useAuth } from '../../context/authContext';
 
 const sidebarLinks = [
   {
@@ -18,7 +19,7 @@ const sidebarLinks = [
     path: paths.settings.default,
   },
   {
-    text: 'Clubs',
+    text: 'Klüplerim',
     path: paths.settings.clubs,
   },
   {
@@ -37,6 +38,8 @@ const sidebarLinks = [
 
 const SettingsLayout = () => {
   const [active, setActive] = useState(false);
+
+  const user = useAuth();
 
   const activeTab = sidebarLinks.find((link) => link.path === window.location.pathname) || sidebarLinks[0];
 
@@ -83,8 +86,8 @@ const SettingsLayout = () => {
           <div className={styles.containerContentProfile}>
             <img src={avatar} alt="user" />
             <div>
-              <h2>ulaş öztürk</h2>
-              <p>Your account is ready, you can now apply for advice.</p>
+              <h2>@{user.Username}</h2>
+              <p>Hesap, klüp işlemlerinizi buradan yürütebilirsiniz</p>
             </div>
           </div>
         </div>

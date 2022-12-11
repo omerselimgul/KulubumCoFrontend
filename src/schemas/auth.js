@@ -28,8 +28,28 @@ const loginSchema = yup.object({
   Userpassword: yup
     .string()
     .min(8, 'Şifre en az 8 Karakterden oLuşabilir.')
-    .max(16, 'Şifre maximum 16 karakterden oluşabilir.')
+    .max(20, 'Şifre maximum 20 karakterden oluşabilir.')
     .required('Şifre alanı boş bırakılamaz.'),
 });
 
-export { registerSchema, loginSchema };
+const changePasswordSchema = yup.object({
+  oldPassword: yup
+    .string()
+    .min(8, 'Şifre en az 8 karakter olmalıdır!')
+    .max(20, 'Şifre maximum 20 karakter olabilir!')
+    .required('Eski şifre alanı bol bırakılamaz'),
+
+  newPassword: yup
+    .string()
+    .min(8, 'Şifre en az 8 karakter olmalıdır!')
+    .max(20, 'Şifre maximum 20 karakter olabilir!')
+    .required('Yeni şifre boş bırakılamaz'),
+  newPasswordConfirm: yup
+    .string()
+    .oneOf([yup.ref('newPassword'), null], 'Şifreler eşleşmiyor!')
+    .min(8, 'Şifre en az 8 karakter olmalıdır!')
+    .max(20, 'Şifre maximum 20 karakter olabilir!')
+    .required('Şifre onay alanı boş bırakılamaz'),
+});
+
+export { registerSchema, loginSchema, changePasswordSchema };

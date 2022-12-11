@@ -8,7 +8,7 @@ import { getCityByCode } from '../../../helpers/city';
 import useSearch from './../../../hooks/useSearch';
 
 const Universities = () => {
-  const { universities, cities } = useDataContext();
+  const { universities } = useDataContext();
 
   const { query, setQuery, result } = useSearch(universities, filterFunction);
 
@@ -25,7 +25,7 @@ const Universities = () => {
           <Card>
             <Card.Img photo={education} />
             <Card.Body>
-              <Card.Label>{getCityByCode(cities, university.SehirId)?.name}</Card.Label>
+              <Card.Label>{getCityByCode(university.SehirId)?.name}</Card.Label>
               <Card.Title>{university.UniversityName}</Card.Title>
             </Card.Body>
           </Card>
