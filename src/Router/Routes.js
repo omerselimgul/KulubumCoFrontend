@@ -21,7 +21,7 @@ import ResetPassword from '../pages/ResetPassword/ResetPassword';
 const Router = () => {
   const routes = useRoutes([
     {
-      path: '/home',
+      path: paths.home.default,
       element: <HomeLayout />,
       children: [
         {
@@ -33,8 +33,8 @@ const Router = () => {
           element: <ClubsPage />,
         },
         {
-          path:paths.home.universities,
-          element:<Universities />
+          path: paths.home.universities,
+          element: <Universities />,
         },
         {
           path: paths.home.detailClub,
@@ -60,7 +60,7 @@ const Router = () => {
     },
     {
       path: paths.resetPassword,
-      element: <ResetPassword />
+      element: <ResetPassword />,
     },
     {
       path: paths.settings.default,

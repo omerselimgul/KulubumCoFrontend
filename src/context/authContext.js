@@ -1,9 +1,16 @@
-import { createContext, useContext } from 'react';
+import { createContext, useContext, useEffect } from 'react';
+import Cookies from 'universal-cookie';
 
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
+  const cookies = new Cookies();
+
   const values = {};
+  // useEffect(() => {
+  //   console.log(token);
+  // }, [token]);
+
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
 };
 
