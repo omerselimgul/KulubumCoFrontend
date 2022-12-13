@@ -5,12 +5,12 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import avatar from '../../asset/ulas.png';
 import { IconButton } from '@mui/material';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import paths from '../../Router/paths';
 import { Link } from 'react-router-dom';
 import classnames from 'classnames';
 import Menu from '../../components/Menu/Menu';
-import Dropdown from '../../components/Dropdown/Dropdown';
+// import Dropdown from '../../components/Dropdown/Dropdown';
 import { useAuth } from '../../context/authContext';
 import { SvgCamera } from '../../asset/icons';
 import api from '../../api';
@@ -41,8 +41,9 @@ const sidebarLinks = [
 
 const SettingsLayout = () => {
   const [active, setActive] = useState(false);
-  const { user } = useAuth();
+  const { user, invalidateCookie } = useAuth();
   const { enqueueSnackbar } = useSnackbar();
+  const navigate = useNavigate();
 
   const activeTab = sidebarLinks.find((link) => link.path === window.location.pathname) || sidebarLinks[0];
 
@@ -89,7 +90,27 @@ const SettingsLayout = () => {
                 }
               >
                 {/* Menü tasarımı burada olacak */}
-                <Dropdown avatar={avatar} setActive={setActive} />
+                <ul className={styles.navbarMenuList}>
+                  <li className={styles.navbarMenuListItem}>
+                    <Link to={paths.home.default}>Anasayfa</Link>
+                  </li>
+
+                  <li className={styles.navbarMenuListItem}>
+                    <button
+                      to={paths.home.default}
+                      onClick={() =>
+                        api.auth.logout().then(() => {
+                          navigate(paths.home.default);
+                          setTimeout(() => {
+                            invalidateCookie();
+                          }, 100);
+                        })
+                      }
+                    >
+                      Çıkış Yap
+                    </button>
+                  </li>
+                </ul>
               </Menu>
             </div>
           </div>

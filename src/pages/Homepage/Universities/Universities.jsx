@@ -17,7 +17,7 @@ const Universities = () => {
       <DuyuruSearchNav
         title="Üniversiteler"
         searchQ={query}
-        placeholder="İsme veya şehre göre üniversite ara"
+        placeholder="İsme veya şehre göre ara"
         onChange={setQuery}
       />
       <div className={styles.universitiesContent}>

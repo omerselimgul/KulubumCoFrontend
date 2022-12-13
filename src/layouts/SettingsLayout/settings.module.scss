@@ -150,6 +150,16 @@ $nav-height: 70px;
     }
   }
 }
+.navbarMenu {
+  &List {
+    padding: 0.25rem;
+    background-color: $color-light;
+    &Item {
+      padding: 0.5rem 1rem;
+      border-bottom: 1px solid $color-light-secondary;
+    }
+  }
+}
 
 .active {
   background-color: #eaf8f5;

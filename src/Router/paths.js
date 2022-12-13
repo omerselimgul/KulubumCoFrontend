@@ -2,8 +2,8 @@ const paths = {
   home: {
     default: '/',
     clubs: '/clubs',
-    universities: 'universities',
-    detailClub: 'detailclub',
+    universities: '/universities',
+    detailClub: '/detailclub',
   },
   login: '/login',
   register: '/register',

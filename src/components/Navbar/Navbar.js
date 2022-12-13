@@ -4,7 +4,7 @@ import avatar from '../../asset/avatar.png';
 import SearchIcon from '@mui/icons-material/Search';
 import { IconButton } from '../Button';
 import paths from '../../Router/paths';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Menu from '../Menu/Menu';
 import Button from '../Button';
 import Dropdown from '../Dropdown/Dropdown';
@@ -27,7 +27,7 @@ const navItems = [
 
   {
     title: 'Hakkımızda',
-    path: paths.home.default,
+    path: paths.home.detailClub,
   },
 ];
 
@@ -49,6 +49,8 @@ const navItems = [
 const Navbar = () => {
   const [active, setActive] = useState(false);
   const { isAuth } = useAuth();
+  const location = useLocation();
+  console.log(location);
 
   return (
     <nav className={styles.navbar}>
@@ -66,7 +68,9 @@ const Navbar = () => {
           <div className={styles.navbarItems}>
             {navItems.map((item) => (
               <Link to={item.path} key={item}>
-                <Button variant="contained">{item.title}</Button>
+                <Button variant="contained" className={item.path === location.pathname ? styles.navbarItemActive : ''}>
+                  {item.title}
+                </Button>
               </Link>
             ))}
             {/* Search */}
