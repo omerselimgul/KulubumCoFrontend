@@ -12,6 +12,9 @@ import classnames from 'classnames';
 import Menu from '../../components/Menu/Menu';
 import Dropdown from '../../components/Dropdown/Dropdown';
 import { useAuth } from '../../context/authContext';
+import { SvgCamera } from '../../asset/icons';
+import api from '../../api';
+import { useSnackbar } from 'notistack';
 
 const sidebarLinks = [
   {
@@ -38,10 +41,24 @@ const sidebarLinks = [
 
 const SettingsLayout = () => {
   const [active, setActive] = useState(false);
-
-  const user = useAuth();
+  const { user } = useAuth();
+  const { enqueueSnackbar } = useSnackbar();
 
   const activeTab = sidebarLinks.find((link) => link.path === window.location.pathname) || sidebarLinks[0];
+
+  const handleProfileImageChange = (e) => {
+    const file = e?.target?.files?.[0];
+    if (!file) return;
+    if (file.type.split('/')[0] !== 'image') return enqueueSnackbar('Geçersiz dosya tipi', { variant: 'error' });
+    const payload = new FormData();
+    payload.append('media', e.target.files[0]);
+    api.user
+      .edit(payload)
+      .then(() => {
+        enqueueSnackbar('Profil resmi başarıyla güncellendi!', { variant: 'success' });
+      })
+      .catch((e) => enqueueSnackbar(e.response?.data?.message || 'Beklenmedik bir hata oluştu!', { variant: 'error' }));
+  };
 
   return (
     <div className={styles.layoutWrapper}>
@@ -84,7 +101,11 @@ const SettingsLayout = () => {
         <div className={styles.containerContent}>
           <div className={styles.containerContentBackground}></div>
           <div className={styles.containerContentProfile}>
-            <img src={avatar} alt="user" />
+            <div className={styles.containerContentProfileEdit}>
+              <img src={avatar} alt="user" />
+              <input type="file" onChange={handleProfileImageChange} />
+              <SvgCamera />
+            </div>
             <div>
               <h2>@{user.Username}</h2>
               <p>Hesap, klüp işlemlerinizi buradan yürütebilirsiniz</p>

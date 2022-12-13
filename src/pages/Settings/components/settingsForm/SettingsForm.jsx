@@ -22,11 +22,11 @@ const SettingsInput = ({ name, className, label, type = 'text', placeholder, val
   );
 };
 
-const SettingsSelect = ({ label, options = [], defaultValue, onChange, error }) => {
+const SettingsSelect = ({ label, options = [], defaultValue, onChange, error, value }) => {
   return (
     <div className={styles.formSelect}>
       <label>{label}</label>
-      <select onChange={onChange} defaultValue={defaultValue}>
+      <select onChange={onChange} defaultValue={defaultValue} value={value}>
         {options.map((option, key) => (
           <option key={key} value={option.value}>
             {option.label}

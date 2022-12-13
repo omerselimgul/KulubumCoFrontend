@@ -9,6 +9,7 @@ import Menu from '../Menu/Menu';
 import Button from '../Button';
 import Dropdown from '../Dropdown/Dropdown';
 import { useState } from 'react';
+import { useAuth } from '../../context/authContext';
 
 const navItems = [
   {
@@ -47,6 +48,7 @@ const navItems = [
 
 const Navbar = () => {
   const [active, setActive] = useState(false);
+  const { isAuth } = useAuth();
 
   return (
     <nav className={styles.navbar}>
@@ -75,18 +77,24 @@ const Navbar = () => {
             </div>
           </div>
           {/* Avatar */}
-          <Menu
-            toggle={
-              <IconButton>
-                <div className={styles.navbarAvatar} onClick={() => setActive(!active)}>
-                  <img src={avatar} alt="User" />
-                </div>
-              </IconButton>
-            }
-            active={active}
-          >
-            <Dropdown avatar={avatar} setActive={setActive} />
-          </Menu>
+          {isAuth ? (
+            <Menu
+              toggle={
+                <IconButton>
+                  <div className={styles.navbarAvatar} onClick={() => setActive(!active)}>
+                    <img src={avatar} alt="User" />
+                  </div>
+                </IconButton>
+              }
+              active={active}
+            >
+              <Dropdown avatar={avatar} setActive={setActive} />
+            </Menu>
+          ) : (
+            <Button>
+              <Link to={paths.login}>Giriş Yap</Link>{' '}
+            </Button>
+          )}
         </div>
       </div>
     </nav>

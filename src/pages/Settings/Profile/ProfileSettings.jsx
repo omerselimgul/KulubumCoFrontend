@@ -9,20 +9,31 @@ import {
 import styles from './profile.module.scss';
 import { useAuth } from '../../../context/authContext';
 import { useFormUniversities } from '../../../context/dataContext';
+import api from '../../../api';
 
 const ProfileSettings = () => {
-  const user = useAuth();
+  const { user } = useAuth();
 
   const formik = useFormik({
     enableReinitialize: true,
+
     initialValues: {
       Username: user?.Username,
       Email: user?.Email,
+      Department: user?.Department,
+      UniversityId: user?.UniversityId,
+      BirthDate: user?.BirthDate,
     },
-    onSubmit: (values) => {},
+    onSubmit: (values, { setSubmitting }) => {
+      api.user
+        .edit(values)
+        .then((res) => console.log(res.data))
+        .finally(() => setSubmitting(false));
+    },
   });
   const universities = useFormUniversities();
 
+  if (!formik.values.UniversityId) return;
   return (
     <main className={styles.profile}>
       {/* Title */}
@@ -47,9 +58,24 @@ const ProfileSettings = () => {
               />
             </div>
             {/* university and dateOfBirth */}
-            <SettingsSelect label="University" options={universities} />
 
-            {/* <SettingsInput label="Birthdate" placeholder="Your birthday" type="date" /> */}
+            <SettingsSelect
+              name="UniversityId"
+              label="University"
+              value={formik.values.UniversityId}
+              defaultValue={formik.values.UniversityId}
+              options={universities}
+              onChange={(e) => formik.setFieldValue('UniversityId', e.target.value)}
+            />
+
+            <SettingsInput
+              name="Birthdate"
+              value={formik.values.BirthDate}
+              label="Birthdate"
+              placeholder="Your birthday"
+              type="date"
+              onChange={(e) => formik.setFieldValue('Birthdate', e.target.value)}
+            />
           </div>
           {/* Right side */}
           <div className={styles.formRight}>
@@ -62,7 +88,7 @@ const ProfileSettings = () => {
               onChange={formik.handleChange}
             />
             {/* <SettingsPhoneSelect label="Phone number" options={phones} placeholder="Enter your number" /> */}
-            {/* <SettingsSelect label="Department" options={universities} /> */}
+            <SettingsSelect label="Department" options={universities} />
           </div>
         </div>
         {/* Button */}

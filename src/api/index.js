@@ -9,6 +9,7 @@ const api = {
     login: (data) => API.post('/auth/login', data),
     forgotPassword: (data) => API.post('/auth/forgotPassword', data),
     resetPassword: (data) => API.post('/auth/', data),
+    logout: () => API.get('/auth/logout'),
   },
   clubs: {
     create: (values) => API.post('/club/', values),
@@ -17,6 +18,7 @@ const api = {
   },
   user: {
     changePassword: (data) => API.post('/user/password/change', data),
+    edit: (data) => API.put('/user', data),
   },
 
   universities: {

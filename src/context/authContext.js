@@ -4,22 +4,30 @@ import Cookies from 'universal-cookie';
 
 const AuthContext = createContext();
 
-const AuthProvider = ({ children }) => {
-  const token = new Cookies().get('KulubumCo');
-  const [user, setUser] = useState(null);
+const KLUBUMCO_TOKEN = 'KulubumCo';
 
-  const values = { ...user };
+const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState({});
+  const cookieToken = new Cookies().get(KLUBUMCO_TOKEN);
+  const [token, setToken] = useState(cookieToken);
 
   useEffect(() => {
-    if (token) {
-      try {
-        const res = jwtDecode(token);
-        setUser(res);
-      } catch (error) {
-        setUser(null);
-      }
+    try {
+      const res = jwtDecode(token);
+      setUser(res);
+    } catch (error) {
+      setUser({});
     }
   }, [token]);
+
+  const isAuth = !!Object.keys(user).length;
+
+  const invalidateCookie = () => {
+    const newToken = new Cookies().get(KLUBUMCO_TOKEN);
+    setToken(newToken);
+  };
+
+  const values = { user, setUser, invalidateCookie, isAuth };
 
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
 };
@@ -27,7 +35,7 @@ const AuthProvider = ({ children }) => {
 const useAuth = () => {
   const context = useContext(AuthContext);
   // !! Booleane cevirmek icin kullanılır.
-  return { ...context, isAuth: Boolean(Object.keys(context).length) };
+  return context;
 };
 
 export { useAuth };
