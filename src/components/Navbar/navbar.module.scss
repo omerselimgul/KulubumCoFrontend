@@ -22,6 +22,7 @@
   &Right {
     display: flex;
     align-items: center;
+    justify-content: center;
   }
   &Items {
     display: flex;
@@ -84,5 +85,68 @@
         }
       }
     }
+  }
+}
+
+@media (max-width: $screen-sm) {
+  .navbar {
+    &Left {
+      img {
+        width: 100px;
+        height: 30px;
+      }
+    }
+    &Items {
+      display: none;
+    }
+    &Avatar {
+      width: 2rem;
+    }
+    &Container {
+      width: 100%;
+      padding: 0.25rem;
+    }
+    &Hamburger {
+      position: relative;
+      button {
+        display: flex;
+        align-items: center;
+        padding: 0;
+        margin: 0;
+      }
+      svg {
+        color: $color-light;
+      }
+      &Menu {
+        position: absolute;
+        width: 101vw;
+        right: -5px;
+        margin-top: 1.4rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-end;
+        // animation-name: animate;
+        &Item {
+          background-color: $color-primary;
+          width: 100%;
+          text-align: right;
+          color: $color-light;
+          padding: 0.5rem 1rem;
+          &:not(:last-child) {
+            border-bottom: 1px solid $color-light;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes animate {
+  from {
+    width: 0;
+  }
+  to {
+    width: 101vw;
   }
 }

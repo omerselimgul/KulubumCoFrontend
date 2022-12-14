@@ -10,6 +10,7 @@ import Button from '../Button';
 import Dropdown from '../Dropdown/Dropdown';
 import { useState } from 'react';
 import { useAuth } from '../../context/authContext';
+import { SvgVerticalEllipsis, SvgX } from '../../asset/icons';
 
 const navItems = [
   {
@@ -31,25 +32,11 @@ const navItems = [
   },
 ];
 
-// const menuItems = [
-//   {
-//     title: 'Profilim',
-//     path: paths.settings.default,
-//   },
-//   {
-//     title: 'Takip ettigim klüpler',
-//     path: paths.settings.follows,
-//   },
-//   {
-//     title: 'Üye olduğum klüpler',
-//     path: paths.settings.clubs,
-//   },
-// ];
-
 const Navbar = () => {
   const [active, setActive] = useState(false);
   const { isAuth } = useAuth();
   const location = useLocation();
+  const [hamburger, setHamburger] = useState(false);
 
   return (
     <nav className={styles.navbar}>
@@ -66,7 +53,7 @@ const Navbar = () => {
           {/* Navbar items */}
           <div className={styles.navbarItems}>
             {navItems.map((item) => (
-              <Link to={item.path} key={item}>
+              <Link to={item.path} key={item.path}>
                 <Button
                   variant="contained"
                   className={item.path === location.pathname ? styles.navbarItemActive : styles.navbarItem}
@@ -101,6 +88,24 @@ const Navbar = () => {
               <Link to={paths.login}>Giriş Yap</Link>{' '}
             </Button>
           )}
+          <div className={styles.navbarHamburger}>
+            <button onClick={() => setHamburger((h) => !h)}>{hamburger ? <SvgX /> : <SvgVerticalEllipsis />}</button>
+
+            {hamburger && (
+              <div className={styles.navbarHamburgerMenu}>
+                {navItems.map((item) => (
+                  <Link
+                    to={item.path}
+                    key={item.path}
+                    className={styles.navbarHamburgerMenuItem}
+                    onClick={() => setHamburger(false)}
+                  >
+                    {item.title}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </nav>

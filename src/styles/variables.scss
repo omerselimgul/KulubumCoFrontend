@@ -24,6 +24,6 @@ $duration-normal: 500ms;
 $duration-slow: 1000ms;
 
 .container {
-  width: min(calc(100% - 4rem), $container-size);
+  width: min(calc(100% - 2rem), $container-size);
   margin-inline: auto;
 }
