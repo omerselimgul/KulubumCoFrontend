@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState, useMemo } from 'react';
 import { cities } from '../constants/data';
 import requests from '../api';
-import Loading from '../components/Loading/Loading';
+import Loading from '../pages/Loading/Loading';
 
 const DataContext = createContext();
 

@@ -28,8 +28,11 @@
     align-items: center;
     margin-right: 2rem;
   }
-  &ItemActive {
+  &Item {
     opacity: 0.7;
+  }
+  &ItemActive {
+    opacity: 1;
   }
   &Search {
     display: flex;

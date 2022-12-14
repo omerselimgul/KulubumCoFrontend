@@ -14,20 +14,25 @@ const ClubsPage = () => {
   const [page, setPage] = useState(1);
 
   useEffect(() => {
+    const payload = {
+      page,
+      limit: 10,
+    };
+    if (search.trim().length >= 2) {
+      payload.name = search;
+    }
+
     api.clubs
-      .getClub(page, 10)
+      .getClub(payload)
       .then((res) => {
         setClubs(res.data.data);
       })
       .catch((err) => console.log(err.response.data.message))
       .finally(() => setLoading(false));
-  }, [page]);
+  }, [page, search]);
 
   useEffect(() => {
-    api.clubs.search(search).then((res) => {
-      setPage(1);
-      setClubs(res.data.data);
-    });
+    setPage(1);
   }, [search]);
 
   return (

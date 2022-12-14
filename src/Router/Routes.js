@@ -17,6 +17,7 @@ import Universities from '../pages/Homepage/Universities/Universities';
 import DetailClub from '../pages/DetailClub/DetailClub';
 import ResetPassword from '../pages/ResetPassword/ResetPassword';
 import PrivateRoute from '../layouts/PrivateRoute/PrivateRoute';
+import NotFound from '../pages/NotFound/NotFound';
 
 const routes = [
   {
@@ -51,7 +52,7 @@ const routes = [
   },
   {
     path: '*',
-    element: <Login />,
+    element: <NotFound />,
   },
   {
     path: paths.forgotPassword,

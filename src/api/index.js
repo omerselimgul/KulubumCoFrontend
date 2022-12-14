@@ -12,8 +12,8 @@ const api = {
     logout: () => API.get('/auth/logout'),
   },
   clubs: {
-    create: (values) => API.post('/club/', values),
-    getClub: (page, limit) => API.get(`/club/?page=${page}&limit=${limit}`),
+    create: (values) => API.post('/club', values),
+    getClub: ({ page, limit, name }) => API.get(`/club`, { params: { page, limit, name } }),
     deleteClub: (id) => API.delete(`/club/${id}`),
     search: (query) => API.get(`/club/search/getByNameContains`, { params: { name: query } }),
   },

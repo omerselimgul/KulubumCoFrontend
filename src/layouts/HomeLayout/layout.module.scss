@@ -68,6 +68,10 @@ $sidebar-width: 500px;
   * {
     padding: 0.5rem 1rem;
   }
+  div {
+    min-width: 6ch;
+    text-align: center;
+  }
   &Button {
     background-color: $color-primary;
     color: $color-light;

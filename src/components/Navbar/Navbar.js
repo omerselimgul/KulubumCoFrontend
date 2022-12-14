@@ -50,7 +50,6 @@ const Navbar = () => {
   const [active, setActive] = useState(false);
   const { isAuth } = useAuth();
   const location = useLocation();
-  console.log(location);
 
   return (
     <nav className={styles.navbar}>
@@ -68,7 +67,10 @@ const Navbar = () => {
           <div className={styles.navbarItems}>
             {navItems.map((item) => (
               <Link to={item.path} key={item}>
-                <Button variant="contained" className={item.path === location.pathname ? styles.navbarItemActive : ''}>
+                <Button
+                  variant="contained"
+                  className={item.path === location.pathname ? styles.navbarItemActive : styles.navbarItem}
+                >
                   {item.title}
                 </Button>
               </Link>
