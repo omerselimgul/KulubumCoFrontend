@@ -86,9 +86,12 @@
       }
     }
   }
+  &Hamburger {
+    display: none;
+  }
 }
 
-@media (max-width: $screen-sm) {
+@media (max-width: $screen-md) {
   .navbar {
     &Left {
       img {
@@ -107,11 +110,12 @@
       padding: 0.25rem;
     }
     &Hamburger {
+      display: block;
       position: relative;
       button {
         display: flex;
         align-items: center;
-        padding: 0;
+        padding-inline: 0.5rem;
         margin: 0;
       }
       svg {
