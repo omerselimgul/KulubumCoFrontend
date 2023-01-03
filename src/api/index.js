@@ -25,12 +25,24 @@ const api = {
     changePassword: (data) => API.post('/user/password/change', data),
     edit: (data) => API.put('/user', data),
     changeProfileImage: (data) => API.patch('/user/profileimage/update', data),
+    getProfileImage: () => API.get("/user/getprofileimage"),
   },
 
   universities: {
     list: () => API.get('/university'),
     getUniversity: (id) => API.get(`/university/${id}`),
   },
+  follows: {
+    getFollowListByUserId: (data) => API.get(`/follow/getFollowListByUserId?userId=${data}&page=1&limit=10`),
+  },
+  admin: {
+    getByUserId: () => API.get("/author/byuserid")
+  },
+  posts: {
+    create: (data) => API.post("/post/", data),
+    getByUserId: () => API.get("/post/getuserid/follow"),
+    getByUniversityId: (id) => API.get(`/post/getbyuniversityid/${id}`)
+  }
 };
 
 export default api;
