@@ -3,6 +3,7 @@ import styles from './card.module.scss';
 import cn from 'classnames';
 import api from '../../api';
 import { useState } from 'react';
+import { useSnackbar } from 'notistack';
 
 const Card = ({ key, children, style, className }) => {
   const cardStyle = {
@@ -51,7 +52,7 @@ const CardDate = ({ children }) => {
   return <span className={styles.cardDate}>{children}</span>;
 };
 
-const Follow = ({ children, status = false, clubId, ...props }) => {
+const Follow = ({ children, status = false, clubId, setError = null, ...props }) => {
   const [followStatus, setFollowStatus] = useState(status);
   const [loading, setLoading] = useState(false);
 
@@ -60,7 +61,12 @@ const Follow = ({ children, status = false, clubId, ...props }) => {
     api.clubs
       .follow(clubId)
       .then((res) => {
+        console.log(res)
         setFollowStatus(res.data?.followStatus);
+      }).catch((error) => {
+        if (setError !== null) {
+          setError(error)
+        }
       })
       .finally(() => setLoading(false));
   };

@@ -1,5 +1,5 @@
 import { useFormik } from 'formik';
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   SettingsInput,
   SettingsSelect,
@@ -10,10 +10,9 @@ import styles from './profile.module.scss';
 import { useAuth } from '../../../context/authContext';
 import { useFormUniversities } from '../../../context/dataContext';
 import api from '../../../api';
-
+import moment from 'moment'
 const ProfileSettings = () => {
   const { user, invalidateCookie } = useAuth();
-
 
   const formik = useFormik({
     enableReinitialize: true,
@@ -22,7 +21,8 @@ const ProfileSettings = () => {
       Email: user?.Email,
       Department: user?.Department,
       UniversityId: user?.UniversityId,
-      BirthDate: user?.Birthdate,
+      BirthDate: user?.Birthdate?.split('T')[0],
+
     },
     onSubmit: (values, { setSubmitting }) => {
       api.user

@@ -161,7 +161,7 @@ const Clubs = () => {
             <Card key={club.ClubId} className={styles.mainContainerCard}>
               {/* <Card.Img photo={cardImage} /> */}
               <Card.Body>
-                <Card.Label>In label</Card.Label>
+                <Card.Label>{club.UniversityName}</Card.Label>
                 <Card.Title>{club.ClubName}</Card.Title>
                 <Card.Owner>
                   <b>By </b>

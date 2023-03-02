@@ -8,16 +8,26 @@ import Spinner from '../../../components/Spinner';
 import { useParams } from 'react-router-dom';
 // import educationLogo from '../../../asset/education.jpg';
 import { useInView } from 'react-intersection-observer';
+import { useSnackbar } from 'notistack';
 
 const ClubsPage = () => {
   const [clubs, setClubs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
+  const [error, setError] = useState();
   const [page, setPage] = useState(1);
   const params = useParams();
   const universityId = params?.universityId;
   const { inView, ref } = useInView();
+  const { enqueueSnackbar } = useSnackbar();
 
+  useEffect(() => {
+    if (error) {
+      if (!error.response.data.success)
+        enqueueSnackbar(error.response.data.message, { variant: 'error', autoHideDuration: 1000 });
+
+    }
+  }, [error])
   useEffect(() => {
     const limit = 5;
     if (page === 1) {
@@ -44,7 +54,7 @@ const ClubsPage = () => {
       api.clubs
         .getClub(payload)
         .then((res) => {
-          setClubs((previous) => [...previous, ...res.data.data]);
+          setClubs((previous) => [...res.data.data]);
         })
         .catch((err) => console.log(err.response.data.message))
         .finally(() => setLoading(false));
@@ -71,7 +81,7 @@ const ClubsPage = () => {
                   <Card.Title>{club.ClubName}</Card.Title>
                   <Card.Owner>{club.UniversityName}</Card.Owner>
                   <Card.Caption>{club.Description}</Card.Caption>
-                  <Card.FollowButton status={club.isFollowed} clubId={club.ClubId}>
+                  <Card.FollowButton status={club.isFollowed} clubId={club.ClubId} setError={setError}>
                     Takip et
                   </Card.FollowButton>
                 </Card.Body>
